@@ -5,4 +5,65 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.buttonContainer {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.webcamContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.portraitWebcam {
+  width: 100%;
+  height: auto;
+}
+
+.landscapeWebcam {
+  width: auto;
+  height: 100%;
+}
+
+.captureButton {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.imageContainer {
+  margin-top: 20px;
+}
+
+.portraitImage {
+  transform: rotate(0deg);
+}
+
+.landscapeImage {
+  transform: rotate(90deg);
 }
