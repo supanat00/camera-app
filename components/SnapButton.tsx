@@ -1,5 +1,6 @@
 "use client"
 import { useRef, useState, useCallback } from "react";
+import Image from "next/image";
 import Webcam from "react-webcam";
 
 const videoConstraints = {
@@ -57,7 +58,7 @@ export const SnapButton = () => {
                         </button>
                     </div>
                     <div>
-                        <img src={url} alt="Screenshot" />
+                        <Image src={url} alt="Screenshot" />
                     </div>
                 </>
             )}
