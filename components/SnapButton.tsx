@@ -62,25 +62,31 @@ export const SnapButton = () => {
 
     return (
         <>
-            <header>
-                <h1>camera app</h1>
-            </header>
             {!isCaptureEnable && (
                 <button onClick={() => setCaptureEnable(true)}>start</button>
             )}
             {isCaptureEnable && (
                 <div className={'container'}>
-                    <div className={'buttonContainer'}>
+                    <div className={'endButton'}>
                         <button onClick={() => setCaptureEnable(false)}>end</button>
                     </div>
                     <div className={'webcamContainer'}>
                         <Webcam
                             audio={false}
                             ref={webcamRef}
-                            screenshotFormat="image/jpeg"
+                            screenshotFormat="image/webp"
                             videoConstraints={constraints}
                             mirrored={mirrored}
                             className={isPortrait ? 'portraitWebcam' : 'landscapeWebcam'}
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                position: "absolute",
+                                left: "50%",
+                                marginLeft: "-50%",
+                                objectFit: "cover",
+                                objectPosition: "center"
+                            }}
                         />
                     </div>
                     <button onClick={capture} className={'captureButton'}>capture</button>
