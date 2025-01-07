@@ -1,8 +1,9 @@
 import Link from 'next/link'; // ใช้ Link จาก next/link
 import Image from 'next/image'; // ใช้ Image จาก next/image
 
-export const Select = () => {
-    const catNames = Array.from({ length: 12 }).fill("แมวเป้า"); // ชื่อแมวที่เป็น "แมวเป้า" ทุกปุ่ม
+// กำหนดประเภทสำหรับ Select Component
+export const Select: React.FC = () => {
+    const catNames = Array.from({ length: 12 }).fill("แมวเป้า") as string[]; // ชื่อแมวที่เป็น "แมวเป้า" ทุกปุ่ม
 
     return (
         <main className="relative flex flex-col items-center justify-center min-h-screen bg-black p-4">
