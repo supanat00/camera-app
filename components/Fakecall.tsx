@@ -1,61 +1,64 @@
 "use client";
 import React, { useState, useEffect, useImperativeHandle, forwardRef } from "react";
+import Image from "next/image";
 
 export interface FakecallHandle {
     playVideo: () => void;
+    toggleRecVisibility: () => void; // ฟังก์ชันสำหรับควบคุมการแสดงผลของรูป rec
 }
 
 export const Fakecall = forwardRef<FakecallHandle>((_, ref) => {
     const [isCameraReady, setIsCameraReady] = useState(false);
-    const [showVideo, setShowVideo] = useState(false);  // เปลี่ยนค่าเริ่มต้นเป็น false
+    const [showVideo, setShowVideo] = useState(false);
     const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-    const [showConnecting, setShowConnecting] = useState(true);  // ใช้เพื่อแสดงข้อความกำลังเชื่อมต่อ
+    const [showConnecting, setShowConnecting] = useState(true);
+    const [isRecVisible, setIsRecVisible] = useState(false); // สถานะสำหรับการแสดงรูป rec
 
     useEffect(() => {
-        // แสดงข้อความ "กำลังเชื่อมต่อ..." เป็นเวลา 3 วินาที
         const timeout = setTimeout(() => {
-            setShowConnecting(false); // ซ่อนข้อความหลังจาก 3 วินาที
+            setShowConnecting(false);
         }, 3000);
 
-        // เมื่อคอมโพเนนต์โหลด ให้เริ่มแสดงวิดีโอหลังจาก 3 วินาที
         const videoTimeout = setTimeout(() => {
-            setShowVideo(true);  // ทำให้วิดีโอเริ่มแสดงหลังจาก 3 วินาที
+            setShowVideo(true);
         }, 3000);
 
         return () => {
-            clearTimeout(timeout); // ลบ timeout เมื่อคอมโพเนนต์ถูกลบ
-            clearTimeout(videoTimeout); // ลบ videoTimeout
+            clearTimeout(timeout);
+            clearTimeout(videoTimeout);
         };
-    }, []); // ทำงานแค่ครั้งเดียวเมื่อคอมโพเนนต์ถูกโหลด
+    }, []);
 
     const handleVideoLoaded = () => {
         setIsVideoLoaded(true);
-        setShowConnecting(false);  // ซ่อนข้อความเมื่อวิดีโอโหลดเสร็จ
+        setShowConnecting(false);
     };
 
-    // ฟังก์ชันที่จะถูกเรียกจากภายนอกเพื่อเริ่มเล่นวิดีโอ
     const playVideo = () => {
         const videoElement = document.querySelector("video");
         if (videoElement) {
-            videoElement.play(); // เริ่มเล่นวิดีโอ
+            videoElement.play();
         }
     };
 
-    // ส่งฟังก์ชัน playVideo ไปยัง ref
+    // ฟังก์ชันที่ใช้เพื่อสลับการแสดงผลของรูป rec
+    const toggleRecVisibility = () => {
+        setIsRecVisible(prev => !prev);
+    };
+
     useImperativeHandle(ref, () => ({
         playVideo,
+        toggleRecVisibility, // ส่งฟังก์ชันนี้ไปยัง ref
     }));
 
     return (
         <div className="fakecall-container fixed top-0 left-0 w-full h-full bg-black z-0">
-            {/* ภาพหน้าปกเบลอและข้อความกำลังเชื่อมต่อ */}
             {showConnecting && (
                 <div className="fakecall-placeholder w-full h-full flex items-center justify-center bg-black">
                     <p className="text-white text-xl loading-text">กำลังเชื่อมต่อ...</p>
                 </div>
             )}
 
-            {/* วิดีโอเมื่อโหลดเสร็จ */}
             {showVideo && (
                 <video
                     className="fakecall-video w-full h-full object-cover"
@@ -63,14 +66,23 @@ export const Fakecall = forwardRef<FakecallHandle>((_, ref) => {
                     muted
                     loop
                     playsInline
-                    onCanPlay={handleVideoLoaded} // ตรวจสอบว่าโหลดวิดีโอเสร็จ
+                    onCanPlay={handleVideoLoaded}
                 >
                     <source src="/videos/catfake.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             )}
+
+            {/* รูป rec ที่จะแสดงและกระพริบ */}
+            <Image
+                src="/images/rec.png"
+                alt="Rec"
+                width={64} // ขนาดของภาพที่แสดงในปุ่ม
+                height={64} // ขนาดของภาพที่แสดงในปุ่ม
+                className={`absolute top-0 left-1/2 transform -translate-x-1/2 mt-4 animate-blink ${isRecVisible ? "block" : "none"}`}
+            />
         </div>
     );
 });
 
-Fakecall.displayName = "Fakecall"; // ตั้งชื่อให้กับคอมโพเนนต์เพื่อให้ TypeScript เข้าใจ
+Fakecall.displayName = "Fakecall";
