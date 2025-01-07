@@ -52,7 +52,7 @@ export const Camera = () => {
     }, []);
 
     return (
-        <div className="camera-container absolute top-0 right-0 m-4">
+        <div className="camera-container absolute top-0 right-0 m-4 z-10">
             <Webcam
                 audio={false}
                 ref={webcamRef}
@@ -61,8 +61,8 @@ export const Camera = () => {
                 mirrored={mirrored}
                 className={isPortrait ? 'portraitWebcam' : 'landscapeWebcam'}
                 style={{
-                    width: "150px",  // กำหนดความกว้างของกรอบ
-                    height: "200px", // กำหนดความสูงของกรอบ
+                    width: "120px",  // กำหนดความกว้างของกรอบลดลง 20%
+                    height: "160px", // กำหนดความสูงของกรอบลดลง 20%
                     objectFit: "cover", // ให้ภาพครอบคลุมกรอบโดยไม่ผิดเพี้ยน
                     objectPosition: "center"
                 }}
