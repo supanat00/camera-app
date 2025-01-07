@@ -79,3 +79,20 @@ Webcam video .landscapeWebcam {
   object-fit: contain;
   z-index: 20;
 }
+
+.loading-text {
+  animation: wave 1.5s infinite ease-in-out;
+}
+
+/* สร้างเอฟเฟกต์การขยับขึ้นลงของข้อความ */
+@keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
