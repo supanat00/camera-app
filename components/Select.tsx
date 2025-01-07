@@ -7,14 +7,13 @@ export const Select = () => {
     return (
         <main className="relative flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
             {/* รูปพื้นหลัง */}
-            <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 z-0 blur-sm">
                 <Image
                     src="/images/cat-bg.jpg" // เปลี่ยนเป็นไฟล์รูปพื้นหลังของคุณ
                     alt="Background"
-                    fill={true} // ใช้เต็มหน้าจอ
-                    quality={80} // ลดขนาดภาพเพื่อปรับประสิทธิภาพ
+                    fill // ใช้เต็มหน้าจอ
                     priority // ให้โหลดภาพก่อนองค์ประกอบอื่น
-                    style={{ objectFit: "cover" }}
+                    className="object-cover w-full h-full"
                 />
             </div>
             {/* ส่วนเนื้อหา */}

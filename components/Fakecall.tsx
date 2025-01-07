@@ -1,7 +1,11 @@
-"use client"
-import React, { useState, useEffect } from "react";
+"use client";
+import React, { useState, useEffect, useImperativeHandle, forwardRef } from "react";
 
-export const Fakecall = () => {
+export interface FakecallHandle {
+    playVideo: () => void;
+}
+
+export const Fakecall = forwardRef<FakecallHandle>((_, ref) => {
     const [isCameraReady, setIsCameraReady] = useState(false);
     const [showVideo, setShowVideo] = useState(false);  // เปลี่ยนค่าเริ่มต้นเป็น false
     const [isVideoLoaded, setIsVideoLoaded] = useState(false);
@@ -29,6 +33,19 @@ export const Fakecall = () => {
         setShowConnecting(false);  // ซ่อนข้อความเมื่อวิดีโอโหลดเสร็จ
     };
 
+    // ฟังก์ชันที่จะถูกเรียกจากภายนอกเพื่อเริ่มเล่นวิดีโอ
+    const playVideo = () => {
+        const videoElement = document.querySelector("video");
+        if (videoElement) {
+            videoElement.play(); // เริ่มเล่นวิดีโอ
+        }
+    };
+
+    // ส่งฟังก์ชัน playVideo ไปยัง ref
+    useImperativeHandle(ref, () => ({
+        playVideo,
+    }));
+
     return (
         <div className="fakecall-container fixed top-0 left-0 w-full h-full bg-black z-0">
             {/* ภาพหน้าปกเบลอและข้อความกำลังเชื่อมต่อ */}
@@ -54,4 +71,6 @@ export const Fakecall = () => {
             )}
         </div>
     );
-};
+});
+
+Fakecall.displayName = "Fakecall"; // ตั้งชื่อให้กับคอมโพเนนต์เพื่อให้ TypeScript เข้าใจ

@@ -1,18 +1,18 @@
-"use client"
+"use client";
 import React, { useState, useRef } from "react";
 import { Camera } from "@/components/Camera";
-import { Fakecall } from "@/components/Fakecall";
+import { Fakecall, FakecallHandle } from "@/components/Fakecall";
 import { Controls } from "@/components/Controls";
 import { IncomingCallScreen } from "@/components/IncomingCallScreen";
 
 export default function Live01() {
     const [callAccepted, setCallAccepted] = useState(false);
-    const fakeCallRef = useRef(null);
+    const fakeCallRef = useRef<FakecallHandle>(null);
 
     const handleAcceptCall = () => {
         setCallAccepted(true);
         if (fakeCallRef.current) {
-            fakeCallRef.current.playVideo(); // เรียกใช้ฟังก์ชันใน Fakecall เพื่อเริ่มเล่นวิดีโอ
+            fakeCallRef.current.playVideo(); // เรียกฟังก์ชัน playVideo ได้แล้ว
         }
     };
 
