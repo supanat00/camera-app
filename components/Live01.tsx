@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import Webcam from "react-webcam";
@@ -15,7 +15,7 @@ const fallbackConstraints = {
     facingMode: { exact: "user" }
 };
 
-export const SnapButton = () => {
+export const Live01 = () => {
     const [isCaptureEnable, setCaptureEnable] = useState<boolean>(false);
     const webcamRef = useRef<Webcam>(null);
     const [url, setUrl] = useState<string | null>(null);

@@ -3,9 +3,9 @@ import { Select } from "@/components/Select";
 
 export default function App() {
 
-  return (
-    <main className="App">
-      <Select />
-    </main>
-  );
+    return (
+        <main className="App">
+            <Select />
+        </main>
+    );
 }
