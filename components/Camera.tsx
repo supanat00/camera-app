@@ -5,13 +5,13 @@ import Webcam from "react-webcam";
 const videoConstraints = {
     width: 1920,
     height: 1080,
-    facingMode: { exact: "environment" }
+    facingMode: { exact: "user" }
 };
 
 const fallbackConstraints = {
     width: 1920,
     height: 1080,
-    facingMode: { exact: "user" }
+    facingMode: { exact: "environment" }
 };
 
 export const Camera = () => {
@@ -26,7 +26,7 @@ export const Camera = () => {
             try {
                 const mediaStream = await navigator.mediaDevices.getUserMedia({ video: videoConstraints });
                 setConstraints(videoConstraints);
-                setMirrored(false);
+                setMirrored(true);
                 mediaStream.getTracks().forEach(track => track.stop());
             } catch (error) {
                 setConstraints(fallbackConstraints);
