@@ -77,8 +77,9 @@ export const Fakecall = forwardRef<FakecallHandle>((_, ref) => {
             <Image
                 src="/images/rec.png"
                 alt="Rec"
-                width={64} // ขนาดของภาพที่แสดงในปุ่ม
-                height={64} // ขนาดของภาพที่แสดงในปุ่ม
+                width="64" // ขนาดของภาพที่แสดงในปุ่ม
+                height="39" // ขนาดของภาพที่แสดงในปุ่ม
+                priority
                 className={`absolute top-0 left-1/2 transform -translate-x-1/2 mt-4 animate-blink ${isRecVisible ? "block" : "none"}`}
             />
         </div>

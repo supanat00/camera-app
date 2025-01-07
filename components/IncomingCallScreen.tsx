@@ -29,9 +29,9 @@ export const IncomingCallScreen: React.FC<IncomingCallScreenProps> = ({
                 <Image
                     src="/images/catcall.jpg"
                     alt="Incoming Call Background"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
                     priority
+                    className="object-cover w-full h-full"
                 />
             </div>
 
