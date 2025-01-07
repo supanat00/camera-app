@@ -12,7 +12,7 @@ export const Select = () => {
                     <Link
                         key={index}
                         href={`/live${String(index + 1).padStart(2, "0")}`} // ใช้ href ของ next/link
-                        className="w-20 h-20 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition flex justify-center items-center overflow-hidden"
+                        className="w-24 h-24 bg-blue-500 text-white rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out flex justify-center items-center overflow-hidden"
                     >
                         <Image
                             src="/images/live01.jpg" // ใช้ไฟล์ live01.jpg แทน
@@ -27,7 +27,7 @@ export const Select = () => {
             {/* ปุ่ม M */}
             <Link
                 href="/live13" // ไปยังหน้าสุดท้าย
-                className="w-20 h-20 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-600 transition flex justify-center items-center overflow-hidden"
+                className="w-24 h-24 bg-blue-500 text-white rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out flex justify-center items-center overflow-hidden"
             >
                 <Image
                     src="/images/live01.jpg" // ใช้ไฟล์ live01.jpg แทน
