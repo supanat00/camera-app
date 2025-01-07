@@ -6,12 +6,15 @@ import Image from 'next/image'; // ใช้ Image จาก next/image
 export const Select = () => {
     return (
         <main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+            <h1 className="text-2xl md:text-3xl font-semibold text-center mb-8">
+                เลือกเจ้าเหมียวที่คุณชอบ
+            </h1>
             {/* ถ้ายังไม่ได้เลือก Live จะเห็นกลุ่มปุ่ม 4x3 และปุ่ม M */}
             <div className="grid grid-cols-3 gap-3 mb-8">
                 {Array.from({ length: 12 }).map((_, index) => (
                     <Link
                         key={index}
-                        href={`/live${String(index + 1).padStart(2, "0")}`} // ใช้ href ของ next/link
+                        href={`/Live${String(index + 1).padStart(2, "0")}`} // ใช้ href ของ next/link
                         className="w-24 h-24 bg-blue-500 text-white rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 ease-in-out flex justify-center items-center overflow-hidden"
                     >
                         <Image

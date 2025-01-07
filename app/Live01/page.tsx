@@ -1,11 +1,11 @@
 import React from "react"
-import { Select } from "@/components/Select";
+import { Camera } from '@/components/Camera';
 
-export default function App() {
+export default function Live01() {
 
     return (
-        <main className="App">
-            <Select />
+        <main className="Live01">
+            <Camera />
         </main>
     );
 }
